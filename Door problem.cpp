@@ -1,4 +1,6 @@
 #include <iostream>
+#include <conio.h>
+#define clrscr() system("cls")
 using namespace std;
 
 int main() {
@@ -23,12 +25,38 @@ int main() {
 	
 label:
 	
-	cout<<"\n1. View all doors\n2. View open doors\n3. View closed doors\n4. Try with a different number\n5. Exit\n\nSelect your choice: ";
+	cout<<"\n1. View open doors\n2. View closed doors\n3. Search for a door\n4. Try with a different number\n5. Exit\n\nSelect your choice: ";
 	int choice;
 	cin>>choice;
 	switch(choice) {
 		case 1:
-			
+			cout<<"{";
+			for(int i = 0; i < totalDoors; i++) {
+				if(door[i] == 1)
+					cout<<i+1<<", ";
+			}
+			cout<<"\r\r}\n\nPress any key to continue...";
+			getch();
+			goto label;
+		case 2:
+			cout<<"{";
+			for(int i = 0; i < totalDoors; i++) {
+				if(door[i] == 0)
+					cout<<i+1<<", ";
+			}
+			cout<<"\r\r}\n\nPress any key to continue...";
+			getch();
+			goto label;
+		case 3:
+			int search;
+			cout<<"Enter the door number: ";
+			cin>>search;
+			if(door[search-1] == 0)
+				cout<<"Door is closed\nPress any key to continue";
+			else
+				cout<<"Door is open\nPress any key to continue";
+				getch();
+				goto label; 
 		case 4:
 			clrscr();
 			main();
