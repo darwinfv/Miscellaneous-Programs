@@ -12,13 +12,14 @@
 	            // fs.writeFile('index.html', response.data, (err) => console.log('File successfully written!'));
 	            $('a').each(function(i, elem) {
 	            	let link = $(this).attr('href');
+	            	console.log(link);
                     download('link', 'dist').then(() => {
 					    console.log('done!');
 					});
+					Promise.all([].map(x => download(x, 'dist'))).then(() => {
+				    	console.log('files downloaded!');
+					});
 	            });
-	            Promise.all([].map(x => download(x, 'dist'))).then(() => {
-				    console.log('files downloaded!');
-				});
 	    	}
 	    }, (error) => console.log(err) );
 
