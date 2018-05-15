@@ -2,13 +2,23 @@
 	let axios = require('axios');
 	let cheerio = require('cheerio');
 	let fs = require('fs');
+	let download = require('download');
 
 	axios.get('http://www.math.purdue.edu/~li2285/courses/453f/ma453.html')
 	    .then((response) => {
 	        if(response.status === 200) {
 	        	const html = response.data;
 	            const $ = cheerio.load(html);
-	            fs.writeFile('index.html', response.data, (err) => console.log('File successfully written!'));
+	            // fs.writeFile('index.html', response.data, (err) => console.log('File successfully written!'));
+	            $('a').each(function(i, elem) {
+	            	let link = $(this).attr('href');
+                    download('link', 'dist').then(() => {
+					    console.log('done!');
+					});
+	            });
+	            Promise.all([].map(x => download(x, 'dist'))).then(() => {
+				    console.log('files downloaded!');
+				});
 	    	}
 	    }, (error) => console.log(err) );
 
