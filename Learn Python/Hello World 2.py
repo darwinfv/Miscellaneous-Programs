@@ -45,7 +45,7 @@ for element in myList:
 def myFunction():
   print("Inside ( ͡° ͜ʖ ͡°)")
 
-myFuncton()
+myFunction()
 
 def Caller(x):
   print(x+x)
