@@ -7,30 +7,30 @@ class Coordinates:
     self.x = first
     self.y = second
   
-  def __str__(sefl):
-    return "yee"
+  def __str__(self):
+    return str("X=" + self.x + " Y=" + self.y)
   
-  def distance(Self, other):
-    return (self.x - other.x) ** 2
+  def distance(self, other):
+    return str((self.x - other.x) ** 2)
 
 
 
 myCoord = Coordinates(3, 4)
 print(myCoord)
 
-otherC = Coordinates(0, 0)
+otherC = Coordinates(1, 1)
 print(myCoord.distance(otherC))
 
 
 
 
-class Ani:
+class Animal:
   
-  def __inti__(self, name):
+  def __init__(self, name):
     self.name = name
   
   def greeting(self):
-    print("YO")
+    print("I am " + self.name)
 
 class Dog(Animal):
 
@@ -38,4 +38,4 @@ class Dog(Animal):
     super(Dog, self).__init__(self)
 
 
-one = Animal
+one = Animal("potato")
