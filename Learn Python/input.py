@@ -16,17 +16,16 @@ print(queue)
 
 
 # dictionaries
+import oop
 
 
+for x in range(1, 11):
+	print('{0:2d} {1:3d} {2:4d}'.format(x, x**2, x**3))
 
 
-
-
-
-
-
-
-
+f = open("note.txt")
+for line in f:
+	print(line, end='')
 
 
 
