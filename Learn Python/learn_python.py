@@ -1,63 +1,3 @@
-
-# Result of integer division truncated down both for positive and negative.
-5 // 3       # => 1
-5.0 // 3.0   # => 1.0 # works on floats too
--5 // 3      # => -2
--5.0 // 3.0  # => -2.0
-
-# The result of division is always a float
-10.0 / 3  # => 3.3333333333333335
-
-# Modulo operation
-7 % 3  # => 1
-
-# Exponentiation (x**y, x to the yth power)
-2**3  # => 8
-
-# Enforce precedence with parentheses
-(1 + 3) * 2  # => 8
-
-# Boolean values are primitives (Note: the capitalization)
-True
-False
-
-# negate with not
-not True   # => False
-not False  # => True
-
-# Boolean Operators
-# Note "and" and "or" are case-sensitive
-True and False  # => False
-False or True   # => True
-
-# Note using Bool operators with ints
-# False is 0 and True is 1
-# Don't mix up with bool(ints) and bitwise and/or (&,|)
-0 and 2     # => 0
--5 or 0     # => -5
-0 == False  # => True
-2 == True   # => False
-1 == True   # => True
--5 != False != True #=> True
-
-# Equality is ==
-1 == 1  # => True
-2 == 1  # => False
-
-# Inequality is !=
-1 != 1  # => False
-2 != 1  # => True
-
-# More comparisons
-1 < 10  # => True
-1 > 10  # => False
-2 <= 2  # => True
-2 >= 2  # => True
-
-# Comparisons can be chained!
-1 < 2 < 3  # => True
-2 < 3 < 2  # => False
-
 # (is vs. ==) is checks if two variables refer to the same object, but == checks
 # if the objects pointed to have the same values.
 a = [1, 2, 3, 4]  # Point a at a new list, [1, 2, 3, 4]
@@ -68,44 +8,6 @@ b = [1, 2, 3, 4]  # Point b at a new list, [1, 2, 3, 4]
 b is a            # => False, a and b do not refer to the same object
 b == a            # => True, a's and b's objects are equal
 
-# Strings are created with " or '
-"This is a string."
-'This is also a string.'
-
-# Strings can be added too! But try not to do this.
-"Hello " + "world!"  # => "Hello world!"
-# String literals (but not variables) can be concatenated without using '+'
-"Hello " "world!"    # => "Hello world!"
-
-# A string can be treated like a list of characters
-"This is a string"[0]  # => 'T'
-
-# You can find the length of a string
-len("This is a string")  # => 16
-
-# .format can be used to format strings, like this:
-"{} can be {}".format("Strings", "interpolated")  # => "Strings can be interpolated"
-
-# You can repeat the formatting arguments to save some typing.
-"{0} be nimble, {0} be quick, {0} jump over the {1}".format("Jack", "candle stick")
-# => "Jack be nimble, Jack be quick, Jack jump over the candle stick"
-
-# You can use keywords if you don't want to count.
-"{name} wants to eat {food}".format(name="Bob", food="lasagna")  # => "Bob wants to eat lasagna"
-
-# If your Python 3 code also needs to run on Python 2.5 and below, you can also
-# still use the old style of formatting:
-"%s can be %s the %s way" % ("Strings", "interpolated", "old")  # => "Strings can be interpolated the old way"
-
-
-# None is an object
-None  # => None
-
-# Don't use the equality "==" symbol to compare objects to None
-# Use "is" instead. This checks for equality of object identity.
-"etc" is None  # => False
-None is None   # => True
-
 # None, 0, and empty strings/lists/dicts/tuples all evaluate to False.
 # All other values are True
 bool(0)   # => False
@@ -114,56 +16,9 @@ bool([])  # => False
 bool({})  # => False
 bool(())  # => False
 
-####################################################
-## 2. Variables and Collections
-####################################################
-
-# Python has a print function
-print("I'm Python. Nice to meet you!")  # => I'm Python. Nice to meet you!
-
-# By default the print function also prints out a newline at the end.
-# Use the optional argument end to change the end string.
-print("Hello, World", end="!")  # => Hello, World!
-
-# Simple way to get input data from console
-input_string_var = input("Enter some data: ") # Returns the data as a string
-# Note: In earlier versions of Python, input() method was named as raw_input()
-
-# There are no declarations, only assignments.
-# Convention is to use lower_case_with_underscores
-some_var = 5
-some_var  # => 5
-
-# Accessing a previously unassigned variable is an exception.
-# See Control Flow to learn more about exception handling.
-some_unknown_var  # Raises a NameError
-
 # if can be used as an expression
 # Equivalent of C's '?:' ternary operator
 "yahoo!" if 3 > 2 else 2  # => "yahoo!"
-
-# Lists store sequences
-li = []
-# You can start with a prefilled list
-other_li = [4, 5, 6]
-
-# Add stuff to the end of a list with append
-li.append(1)    # li is now [1]
-li.append(2)    # li is now [1, 2]
-li.append(4)    # li is now [1, 2, 4]
-li.append(3)    # li is now [1, 2, 4, 3]
-# Remove from the end with pop
-li.pop()        # => 3 and li is now [1, 2, 4]
-# Let's put it back
-li.append(3)    # li is now [1, 2, 4, 3] again.
-
-# Access a list like you would any array
-li[0]   # => 1
-# Look at the last element
-li[-1]  # => 3
-
-# Looking out of bounds is an IndexError
-li[4]  # Raises an IndexError
 
 # You can look at ranges with slice syntax.
 # The start index is included, the end index is not
