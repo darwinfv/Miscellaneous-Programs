@@ -26,10 +26,34 @@ for x in range(1, 11):
 f = open("note.txt")
 for line in f:
 	print(line, end='')
+# f.readline()
+
+
+value = ('the answer', 42)
+print(str(value))
 
 
 
+for arg in sys.argv[1:]:
+    try:
+        f = open(arg, 'r')
+    except OSError:
+        print('cannot open', arg)
+    else:
+        print(arg, 'has', len(f.readlines()), 'lines')
+        f.close()
 
+
+
+def divide(x, y):
+	try:
+		result = x / y
+	except ZeroDivisionError:
+		print("divide by zero")
+	else:
+		print(result)
+	finally:
+		pass
 
 
 
