@@ -56,8 +56,6 @@ def divide(x, y):
 		pass
 
 
-
-
 prompt = "Type: "
 pl = input(prompt)
 print("You typed " + pl)

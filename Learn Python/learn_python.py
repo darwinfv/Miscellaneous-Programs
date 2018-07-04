@@ -20,69 +20,6 @@ bool(())  # => False
 # Equivalent of C's '?:' ternary operator
 "yahoo!" if 3 > 2 else 2  # => "yahoo!"
 
-# You can look at ranges with slice syntax.
-# The start index is included, the end index is not
-# (It's a closed/open range for you mathy types.)
-li[1:3]   # => [2, 4]
-# Omit the beginning and return the list
-li[2:]    # => [4, 3]
-# Omit the end and return the list
-li[:3]    # => [1, 2, 4]
-# Select every second entry
-li[::2]   # =>[1, 4]
-# Return a reversed copy of the list
-li[::-1]  # => [3, 4, 2, 1]
-# Use any combination of these to make advanced slices
-# li[start:end:step]
-
-# Make a one layer deep copy using slices
-li2 = li[:]  # => li2 = [1, 2, 4, 3] but (li2 is li) will result in false.
-
-# Remove arbitrary elements from a list with "del"
-del li[2]  # li is now [1, 2, 3]
-
-# Remove first occurrence of a value
-li.remove(2)  # li is now [1, 3]
-li.remove(2)  # Raises a ValueError as 2 is not in the list
-
-# Insert an element at a specific index
-li.insert(1, 2)  # li is now [1, 2, 3] again
-
-# Get the index of the first item found matching the argument
-li.index(2)  # => 1
-li.index(4)  # Raises a ValueError as 4 is not in the list
-
-# You can add lists
-# Note: values for li and for other_li are not modified.
-li + other_li  # => [1, 2, 3, 4, 5, 6]
-
-# Concatenate lists with "extend()"
-li.extend(other_li)  # Now li is [1, 2, 3, 4, 5, 6]
-
-# Check for existence in a list with "in"
-1 in li  # => True
-
-# Examine the length with "len()"
-len(li)  # => 6
-
-
-# Tuples are like lists but are immutable.
-tup = (1, 2, 3)
-tup[0]      # => 1
-tup[0] = 3  # Raises a TypeError
-
-# Note that a tuple of length one has to have a comma after the last element but
-# tuples of other lengths, even zero, do not.
-type((1))   # => <class 'int'>
-type((1,))  # => <class 'tuple'>
-type(())    # => <class 'tuple'>
-
-# You can do most of the list operations on tuples too
-len(tup)         # => 3
-tup + (4, 5, 6)  # => (1, 2, 3, 4, 5, 6)
-tup[:2]          # => (1, 2)
-2 in tup         # => True
-
 # You can unpack tuples (or lists) into variables
 a, b, c = (1, 2, 3)  # a is now 1, b is now 2 and c is now 3
 # You can also do extended unpacking
@@ -92,20 +29,6 @@ d, e, f = 4, 5, 6
 # Now look how easy it is to swap two values
 e, d = d, e  # d is now 5 and e is now 4
 
-
-# Dictionaries store mappings from keys to values
-empty_dict = {}
-# Here is a prefilled dictionary
-filled_dict = {"one": 1, "two": 2, "three": 3}
-
-# Note keys for dictionaries have to be immutable types. This is to ensure that
-# the key can be converted to a constant hash value for quick look-ups.
-# Immutable types include ints, floats, strings, tuples.
-invalid_dict = {[1,2,3]: "123"}  # => Raises a TypeError: unhashable type: 'list'
-valid_dict = {(1,2,3):[1,2,3]}   # Values can be of any type, however.
-
-# Look up values with []
-filled_dict["one"]  # => 1
 
 # Get all keys as an iterable with "keys()". We need to wrap the call in list()
 # to turn it into a list. We'll talk about those later.  Note - Dictionary key
