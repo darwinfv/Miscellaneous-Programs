@@ -20,43 +20,32 @@ bool(())  # => False
 # Equivalent of C's '?:' ternary operator
 "yahoo!" if 3 > 2 else 2  # => "yahoo!"
 
-# You can unpack tuples (or lists) into variables
+li = []
+li.append(1)    # li is now [1]
+li.append(2)    # li is now [1, 2]
+li.pop()        # => 3 and li is now [1, 2, 4]
+li2 = li[:]  # => li2 = [1, 2, 4, 3] but (li2 is li) will result in false.
+del li[2]  # li is now [1, 2, 3]
+li.remove(2)  # li is now [1, 3]
+li.insert(1, 2)  # li is now [1, 2, 3] again
+li.index(2)  # => 1
+
+tup = (1, 2, 3)
 a, b, c = (1, 2, 3)  # a is now 1, b is now 2 and c is now 3
-# You can also do extended unpacking
 a, *b, c = (1, 2, 3, 4)  # a is now 1, b is now [2, 3] and c is now 4
-# Tuples are created by default if you leave out the parentheses
 d, e, f = 4, 5, 6
-# Now look how easy it is to swap two values
 e, d = d, e  # d is now 5 and e is now 4
 
-
-# Get all keys as an iterable with "keys()". We need to wrap the call in list()
-# to turn it into a list. We'll talk about those later.  Note - Dictionary key
-# ordering is not guaranteed. Your results might not match this exactly.
+empty_dict = {}
+filled_dict = {"one": 1, "two": 2, "three": 3}
+valid_dict = {(1,2,3):[1,2,3]}   # Values can be of any type, however.
+filled_dict["one"]  # => 1
 list(filled_dict.keys())  # => ["three", "two", "one"]
-
-
-# Get all values as an iterable with "values()". Once again we need to wrap it
-# in list() to get it out of the iterable. Note - Same as above regarding key
-# ordering.
 list(filled_dict.values())  # => [3, 2, 1]
-
-
-# Check for existence of keys in a dictionary with "in"
-"one" in filled_dict  # => True
-1 in filled_dict      # => False
-
-# Looking up a non-existing key is a KeyError
-filled_dict["four"]  # KeyError
-
-# Use "get()" method to avoid the KeyError
 filled_dict.get("one")      # => 1
 filled_dict.get("four")     # => None
-# The get method supports a default argument when the value is missing
-filled_dict.get("one", 4)   # => 1
 filled_dict.get("four", 4)  # => 4
 
-# "setdefault()" inserts into a dictionary only if the given key isn't present
 filled_dict.setdefault("five", 5)  # filled_dict["five"] is set to 5
 filled_dict.setdefault("five", 6)  # filled_dict["five"] is still 5
 
@@ -67,144 +56,22 @@ filled_dict["four"] = 4         # another way to add to dict
 # Remove keys from a dictionary with del
 del filled_dict["one"]  # Removes the key "one" from filled dict
 
-# From Python 3.5 you can also use the additional unpacking options
-{'a': 1, **{'b': 2}}  # => {'a': 1, 'b': 2}
-{'a': 1, **{'a': 2}}  # => {'a': 2}
-
-
-
-# Sets store ... well sets
-empty_set = set()
-# Initialize a set with a bunch of values. Yeah, it looks a bit like a dict. Sorry.
 some_set = {1, 1, 2, 2, 3, 4}  # some_set is now {1, 2, 3, 4}
-
-# Similar to keys of a dictionary, elements of a set have to be immutable.
-invalid_set = {[1], 1}  # => Raises a TypeError: unhashable type: 'list'
 valid_set = {(1,), 1}
-
-# Add one more item to the set
 filled_set = some_set
 filled_set.add(5)  # filled_set is now {1, 2, 3, 4, 5}
-
-# Do set intersection with &
 other_set = {3, 4, 5, 6}
 filled_set & other_set  # => {3, 4, 5}
-
-# Do set union with |
 filled_set | other_set  # => {1, 2, 3, 4, 5, 6}
-
-# Do set difference with -
 {1, 2, 3, 4} - {2, 3, 5}  # => {1, 4}
-
-# Do set symmetric difference with ^
 {1, 2, 3, 4} ^ {2, 3, 5}  # => {1, 4, 5}
-
-# Check if set on the left is a superset of set on the right
 {1, 2} >= {1, 2, 3} # => False
-
-# Check if set on the left is a subset of set on the right
 {1, 2} <= {1, 2, 3} # => True
-
-# Check for existence in a set with in
 2 in filled_set   # => True
 10 in filled_set  # => False
 
 
 
-####################################################
-## 3. Control Flow and Iterables
-####################################################
-
-# Let's just make a variable
-some_var = 5
-
-# Here is an if statement. Indentation is significant in Python!
-# Convention is to use four spaces, not tabs.
-# This prints "some_var is smaller than 10"
-if some_var > 10:
-    print("some_var is totally bigger than 10.")
-elif some_var < 10:    # This elif clause is optional.
-    print("some_var is smaller than 10.")
-else:                  # This is optional too.
-    print("some_var is indeed 10.")
-
-
-"""
-For loops iterate over lists
-prints:
-    dog is a mammal
-    cat is a mammal
-    mouse is a mammal
-"""
-for animal in ["dog", "cat", "mouse"]:
-    # You can use format() to interpolate formatted strings
-    print("{} is a mammal".format(animal))
-
-"""
-"range(number)" returns an iterable of numbers
-from zero to the given number
-prints:
-    0
-    1
-    2
-    3
-"""
-for i in range(4):
-    print(i)
-
-"""
-"range(lower, upper)" returns an iterable of numbers
-from the lower number to the upper number
-prints:
-    4
-    5
-    6
-    7
-"""
-for i in range(4, 8):
-    print(i)
-
-"""
-"range(lower, upper, step)" returns an iterable of numbers
-from the lower number to the upper number, while incrementing
-by step. If step is not indicated, the default value is 1.
-prints:
-    4
-    6
-"""
-for i in range(4, 8, 2):
-    print(i)
-"""
-
-While loops go until a condition is no longer met.
-prints:
-    0
-    1
-    2
-    3
-"""
-x = 0
-while x < 4:
-    print(x)
-    x += 1  # Shorthand for x = x + 1
-
-# Handle exceptions with a try/except block
-try:
-    # Use "raise" to raise an error
-    raise IndexError("This is an index error")
-except IndexError as e:
-    pass                 # Pass is just a no-op. Usually you would do recovery here.
-except (TypeError, NameError):
-    pass                 # Multiple exceptions can be handled together, if required.
-else:                    # Optional clause to the try/except block. Must follow all except blocks
-    print("All good!")   # Runs only if the code in try raises no exceptions
-finally:                 #  Execute under all circumstances
-    print("We can clean up resources here")
-
-# Instead of try/finally to cleanup resources you can use a with statement
-with open("myfile.txt") as f:
-    for line in f:
-        print(line)
 
 # Python offers a fundamental abstraction called the Iterable.
 # An iterable is an object that can be treated as a sequence.
@@ -239,23 +106,6 @@ next(our_iterator)  # Raises StopIteration
 list(filled_dict.keys())  # => Returns ["one", "two", "three"]
 
 
-####################################################
-## 4. Functions
-####################################################
-
-# Use "def" to create new functions
-def add(x, y):
-    print("x is {} and y is {}".format(x, y))
-    return x + y  # Return values with a return statement
-
-# Calling functions with parameters
-add(5, 6)  # => prints out "x is 5 and y is 6" and returns 11
-
-# Another way to call functions is with keyword arguments
-add(y=6, x=5)  # Keyword arguments can arrive in any order.
-
-# You can define functions that take a variable number of
-# positional arguments
 def varargs(*args):
     return args
 
@@ -288,42 +138,7 @@ all_the_args(*args)            # equivalent to all_the_args(1, 2, 3, 4)
 all_the_args(**kwargs)         # equivalent to all_the_args(a=3, b=4)
 all_the_args(*args, **kwargs)  # equivalent to all_the_args(1, 2, 3, 4, a=3, b=4)
 
-# Returning multiple values (with tuple assignments)
-def swap(x, y):
-    return y, x  # Return multiple values as a tuple without the parenthesis.
-                 # (Note: parenthesis have been excluded but can be included)
 
-x = 1
-y = 2
-x, y = swap(x, y)     # => x = 2, y = 1
-# (x, y) = swap(x,y)  # Again parenthesis have been excluded but can be included.
-
-# Function Scope
-x = 5
-
-def set_x(num):
-    # Local var x not the same as global variable x
-    x = num    # => 43
-    print(x)   # => 43
-
-def set_global_x(num):
-    global x
-    print(x)   # => 5
-    x = num    # global var x is now set to 6
-    print(x)   # => 6
-
-set_x(43)
-set_global_x(6)
-
-
-# Python has first class functions
-def create_adder(x):
-    def adder(y):
-        return x + y
-    return adder
-
-add_10 = create_adder(10)
-add_10(3)   # => 13
 
 # There are also anonymous functions
 (lambda x: x > 2)(3)                  # => True
@@ -345,141 +160,13 @@ list(filter(lambda x: x > 5, [3, 4, 5, 6, 7]))  # => [6, 7]
 {x: x**2 for x in range(5)}  # => {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
 
 
-####################################################
-## 5. Modules
-####################################################
-
-# You can import modules
-import math
-print(math.sqrt(16))  # => 4.0
-
-# You can get specific functions from a module
-from math import ceil, floor
-print(ceil(3.7))   # => 4.0
-print(floor(3.7))  # => 3.0
-
-# You can import all functions from a module.
-# Warning: this is not recommended
-from math import *
-
-# You can shorten module names
-import math as m
-math.sqrt(16) == m.sqrt(16)  # => True
-
-# Python modules are just ordinary Python files. You
-# can write your own, and import them. The name of the
-# module is the same as the name of the file.
-
-# You can find out which functions and attributes
-# are defined in a module.
 import math
 dir(math)
 
-# If you have a Python script named math.py in the same
-# folder as your current script, the file math.py will
-# be loaded instead of the built-in Python module.
-# This happens because the local folder has priority
-# over Python's built-in libraries.
+def say(msg):
+    print("{name}: {message}".format(name=self.name, message=msg))
 
 
-####################################################
-## 6. Classes
-####################################################
-
-# We use the "class" statement to create a class
-class Human:
-
-    # A class attribute. It is shared by all instances of this class
-    species = "H. sapiens"
-
-    # Basic initializer, this is called when this class is instantiated.
-    # Note that the double leading and trailing underscores denote objects
-    # or attributes that are used by Python but that live in user-controlled
-    # namespaces. Methods(or objects or attributes) like: __init__, __str__,
-    # __repr__ etc. are called special methods (or sometimes called dunder methods)
-    # You should not invent such names on your own.
-    def __init__(self, name):
-        # Assign the argument to the instance's name attribute
-        self.name = name
-
-        # Initialize property
-        self._age = 0
-
-    # An instance method. All methods take "self" as the first argument
-    def say(self, msg):
-        print("{name}: {message}".format(name=self.name, message=msg))
-
-    # Another instance method
-    def sing(self):
-        return 'yo... yo... microphone check... one two... one two...'
-
-    # A class method is shared among all instances
-    # They are called with the calling class as the first argument
-    @classmethod
-    def get_species(cls):
-        return cls.species
-
-    # A static method is called without a class or instance reference
-    @staticmethod
-    def grunt():
-        return "*grunt*"
-
-    # A property is just like a getter.
-    # It turns the method age() into an read-only attribute of the same name.
-    # There's no need to write trivial getters and setters in Python, though.
-    @property
-    def age(self):
-        return self._age
-
-    # This allows the property to be set
-    @age.setter
-    def age(self, age):
-        self._age = age
-
-    # This allows the property to be deleted
-    @age.deleter
-    def age(self):
-        del self._age
-
-
-# When a Python interpreter reads a source file it executes all its code.
-# This __name__ check makes sure this code block is only executed when this
-# module is the main program.
-if __name__ == '__main__':
-    # Instantiate a class
-    i = Human(name="Ian")
-    i.say("hi")                     # "Ian: hi"
-    j = Human("Joel")
-    j.say("hello")                  # "Joel: hello"
-    # i and j are instances of type Human, or in other words: they are Human objects
-
-    # Call our class method
-    i.say(i.get_species())          # "Ian: H. sapiens"
-    # Change the shared attribute
-    Human.species = "H. neanderthalensis"
-    i.say(i.get_species())          # => "Ian: H. neanderthalensis"
-    j.say(j.get_species())          # => "Joel: H. neanderthalensis"
-
-    # Call the static method
-    print(Human.grunt())            # => "*grunt*"
-
-    # Cannot call static method with instance of object 
-    # because i.grunt() will automatically put "self" (the object i) as an argument
-    print(i.grunt())                # => TypeError: grunt() takes 0 positional arguments but 1 was given
-
-    # Update the property for this instance
-    i.age = 42
-    # Get the property
-    i.say(i.age)                    # => "Ian: 42"
-    j.say(j.age)                    # => "Joel: 0"
-    # Delete the property
-    del i.age
-    # i.age                         # => this would raise an AttributeError
-
-
-####################################################
-## 6.1 Inheritance
-####################################################
 
 # Inheritance allows new child classes to be defined that inherit methods and
 # variables from their parent class. 
