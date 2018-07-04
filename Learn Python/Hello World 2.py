@@ -23,11 +23,11 @@ elif(num > 9):
 else:
   print("")
 
-while True:
+while False:
   print("Infinite loop")
 
 while(num < 8):
-  count += 1
+  num += 1
 
 myList = ["this", "something", "nothing", "everything"]
 
@@ -43,20 +43,18 @@ for element in myList:
 # functions
 
 def myFunction():
-  print("Inside ( ͡° ͜ʖ ͡°)")
+  print("Inside function")
 
 myFunction()
 
 def Caller(x):
-  print(x+x)
+  print(x + x)
 
-myFunction(-1)
+Caller(-1)
 
 def sum(first, second):
   return first + second
 
 print(sum(15, 16))
-
-
 
 
